@@ -53,7 +53,7 @@
             </tr>
         </table>
         <div style="margin-top: 20px; margin-bottom: 20px; text-align: center">
-            <button ng-click="calculate()" style="width: 200px; height: 60px">Calculate</button>
+            <button ng-click="calculate()" style="width: 200px; height: 60px" ng-disabled="!mouth || !throat || !shelf">Calculate</button>
         </div>
     </div>
     <table id="tdfResults" ng-show="tdf">
