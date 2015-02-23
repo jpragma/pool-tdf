@@ -52,7 +52,9 @@
                 </td>
             </tr>
         </table>
-        <button ng-click="calculate()">Calculate</button>
+        <div style="margin-top: 20px">
+            <button ng-click="calculate()" style="width: 200px; height: 80px">Calculate</button>
+        </div>
     </div>
     <table id="tdfResults" ng-show="tdf">
         <tr><td>Table Size Factor:</td><td>{{tsf | number:2}}</td></tr>
