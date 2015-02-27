@@ -49,11 +49,11 @@ tdfApp.controller('tdfController', function ($scope) {
 	
 	var inchToMM = function(val) {
 		var vals = val.split(' ');
-		var dVal = parseInt(vals[0]);
+		var dVal = parseFloat(vals[0]);
 		
 		if (vals.length > 1) {
 			var valf = vals[1].split('/');
-		 	dVal += parseInt(valf[0])/parseInt(valf[1]);
+		 	dVal += parseFloat(valf[0])/parseFloat(valf[1]);
 		}
 		return dVal * 25.4; 	
 	};
