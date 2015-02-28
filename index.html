@@ -56,13 +56,13 @@
             <button ng-click="calculate()" style="width: 200px; height: 60px" ng-disabled="!mouth || !throat || !shelf">Calculate</button>
         </div>
     </div>
-    <table id="tdfResults" ng-show="tdf">
-        <tr><td>Table Size Factor:</td><td>{{tsf | number:2}}</td></tr>
-    	<tr><td>Pocket Size Factor:</td><td>{{psf | number:2}}</td></tr>
-    	<tr><td>Pocket Angle Factor:</td><td>{{paf | number:2}}</td></tr>
-    	<tr><td>Pocket Shelf Factor:</td><td>{{plf | number:2}}</td></tr>
-    	<tr><td>Table Difficulty Factor:</td><td>{{tdf | number:2}}</td></tr>
-    	<tr><td>This table is </td><td>{{tdfClass}}</td></tr>
+    <table id="tdfResults" ng-show="result">
+        <tr><td>Table Size Factor:</td><td>{{result.tsf | number:2}}</td></tr>
+    	<tr><td>Pocket Size Factor:</td><td>{{result.psf | number:2}}</td></tr>
+    	<tr><td>Pocket Angle Factor:</td><td>{{result.paf | number:2}}</td></tr>
+    	<tr><td>Pocket Shelf Factor:</td><td>{{result.plf | number:2}}</td></tr>
+    	<tr><td>Table Difficulty Factor:</td><td>{{result.tdf | number:2}}</td></tr>
+    	<tr><td>This table is </td><td>{{result.tdfClass}}</td></tr>
     </table>
 </body>
 

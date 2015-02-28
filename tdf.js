@@ -64,12 +64,7 @@ tdfApp.controller('tdfController', function ($scope) {
     	var shelf = ($scope.units == 'cm') ? parseFloat($scope.shelf) * 10 : inchToMM($scope.shelf);
 
 		var result = $scope.doCalc($scope.selectedTable, mouth, throat, shelf);
-    	$scope.tsf = result.tsf;
-       	$scope.psf = result.psf;
-    	$scope.paf = result.paf;
-    	$scope.plf = result.plf;
-        $scope.tdf = result.tdf;		
-		$scope.tdfClass = result.tdfClass;
+    	$scope.result = result;
 	}
 	
     $scope.doCalc = function (table, mouth, throat, shelf) {    	    	
