@@ -16,7 +16,7 @@ tdfApp.controller('tdfController', function ($scope) {
         {ms: 111.125, psf: 1.05},{ms: 114.3, psf: 1.00},{ms: 120.65, psf: 0.95},{ms: 127.0, psf: 0.91},
         {ms: 133.35, psf: 0.88},{ms: 9999999999999, psf: 0.85}];
 
-	var pafTable = [ // TODO Make it precise, e.g 1" is 25.4mm, not 25 
+	var pafTable = [
 		{mtDiff: 31.75, paf: [1.09, 1,14, 1.20]},
 		{mtDiff: 25.4, paf: [1.07, 1.10, 1.14]},
 		{mtDiff: 22.225, paf: [1.05, 1.07, 1.09]},
@@ -58,11 +58,21 @@ tdfApp.controller('tdfController', function ($scope) {
 		return dVal * 25.4; 	
 	};
 	
-    $scope.calculate = function () {    	
-    	var mouth = ($scope.units == 'cm') ? parseFloat($scope.mouth) * 10 : inchToMM($scope.mouth);
+	$scope.calculate = function () { 
+	    var mouth = ($scope.units == 'cm') ? parseFloat($scope.mouth) * 10 : inchToMM($scope.mouth);
 	   	var throat = ($scope.units == 'cm') ? parseFloat($scope.throat) * 10 : inchToMM($scope.throat);
     	var shelf = ($scope.units == 'cm') ? parseFloat($scope.shelf) * 10 : inchToMM($scope.shelf);
-    	
+
+		var result = $scope.doCalc($scope.selectedTable, mouth, throat, shelf);
+    	$scope.tsf = result.tsf;
+       	$scope.psf = result.psf;
+    	$scope.paf = result.paf;
+    	$scope.plf = result.plf;
+        $scope.tdf = result.tdf;		
+		$scope.tdfClass = result.tdfClass;
+	}
+	
+    $scope.doCalc = function (table, mouth, throat, shelf) {    	    	
     	var psf = psfTable[psfTable.length-1].psf;    	
     	for (var i=0; i < psfTable.length; i++) {
     		if (mouth <= psfTable[i].ms) { 
@@ -92,14 +102,10 @@ tdfApp.controller('tdfController', function ($scope) {
 				break;
 			}    	
     	}
-    	
-    	$scope.tsf = $scope.selectedTable.tsf;
-       	$scope.psf = psf;
-    	$scope.paf = paf[psfIdx];
-    	$scope.plf = plf[psfIdx];
 
-        $scope.tdf = $scope.tsf * $scope.psf * $scope.paf * $scope.plf;
-        
+		var result = { tsf: table.tsf, psf: psf, paf: paf[psfIdx], plf: plf[psfIdx] };
+		result.tdf = result.tsf * result.psf * result.paf * result.plf;
+
         var tdfClass = tdfTable[tdfTable.length - 1].cls;
         for (var i=0; i<tdfTable.length; i++) {
 			if ($scope.tdf < tdfTable[i].tdf) {
@@ -107,7 +113,7 @@ tdfApp.controller('tdfController', function ($scope) {
 				break;
 			}    	
     	}
-    	$scope.tdfClass = tdfClass;
-
+    	result.tdfClass = tdfClass;
+    	return result;
     };
 });
