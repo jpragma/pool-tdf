@@ -16,7 +16,7 @@ tdfApp.controller('tdfController', function ($scope) {
         {ms: 111, psf: 1.05},{ms: 114, psf: 1.00},{ms: 121, psf: 0.95},{ms: 127, psf: 0.91},
         {ms: 133, psf: 0.88},{ms: 9999999999999, psf: 0.85}];
 
-	var pafTable = [
+	var pafTable = [ // TODO Make it precise, e.g 1" is 25.4mm, not 25 
 		{mtDiff: 32, paf: [1.09, 1,14, 1.20]},
 		{mtDiff: 25, paf: [1.07, 1.10, 1.14]},
 		{mtDiff: 22, paf: [1.05, 1.07, 1.09]},
@@ -65,7 +65,7 @@ tdfApp.controller('tdfController', function ($scope) {
     	
     	var psf = psfTable[psfTable.length-1].psf;    	
     	for (var i=0; i < psfTable.length; i++) {
-    		if (mouth < psfTable[i].ms) { 
+    		if (mouth <= psfTable[i].ms) { 
     			psf = psfTable[i].psf;
     			break;
     		}
