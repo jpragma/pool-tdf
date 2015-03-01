@@ -11,29 +11,29 @@ tdfApp.controller('tdfController', function ($scope) {
     $scope.selectedTable = $scope.tables[2];
     $scope.units = 'cm';
 
-    var psfTable = [{ms: 85.725, psf: 1.55},{ms: 88.9, psf: 1.46},{ms: 92.075, psf: 1.38},{ms: 95.25, psf: 1.31},
-        {ms: 98.425, psf: 1.25},{ms: 101.6, psf: 1.20},{ms: 104.775, psf: 1.15},{ms: 107.95, psf: 1.10},
-        {ms: 111.125, psf: 1.05},{ms: 114.3, psf: 1.00},{ms: 120.65, psf: 0.95},{ms: 127.0, psf: 0.91},
-        {ms: 133.35, psf: 0.88},{ms: 9999999999999, psf: 0.85}];
+    var psfTable = [{ms: 86, psf: 1.55},{ms: 89, psf: 1.46},{ms: 92, psf: 1.38},{ms: 95, psf: 1.31},
+        {ms: 98, psf: 1.25},{ms: 102, psf: 1.20},{ms: 105, psf: 1.15},{ms: 108, psf: 1.10},
+        {ms: 111, psf: 1.05},{ms: 114, psf: 1.00},{ms: 121, psf: 0.95},{ms: 127, psf: 0.91},
+        {ms: 133, psf: 0.88},{ms: 9999999999999, psf: 0.85}];
 
 	var pafTable = [
-		{mtDiff: 31.75, paf: [1.09, 1,14, 1.20]},
-		{mtDiff: 25.4, paf: [1.07, 1.10, 1.14]},
-		{mtDiff: 22.225, paf: [1.05, 1.07, 1.09]},
-		{mtDiff: 19.05, paf: [1.03, 1.04, 1.05]},
-		{mtDiff: 15.875, paf: [1.01, 1.02, 1.02]},
-		{mtDiff: 12.7, paf: [1.00, 1.00, 1.00]},
-		{mtDiff: 9.525, paf: [0.98, 0.98, 0.99]},
-		{mtDiff: 6.35, paf: [0.96, 0.97, 0.98]},
+		{mtDiff: 32, paf: [1.09, 1,14, 1.20]},
+		{mtDiff: 25, paf: [1.07, 1.10, 1.14]},
+		{mtDiff: 22, paf: [1.05, 1.07, 1.09]},
+		{mtDiff: 19, paf: [1.03, 1.04, 1.05]},
+		{mtDiff: 16, paf: [1.01, 1.02, 1.02]},
+		{mtDiff: 13, paf: [1.00, 1.00, 1.00]},
+		{mtDiff: 9, paf: [0.98, 0.98, 0.99]},
+		{mtDiff: 6, paf: [0.96, 0.97, 0.98]},
 		{mtDiff: 0, paf: [0.94, 0.95, 0.97]}
 	];
 	
 	var plfTable = [
-		{shelf: 57.15, plf: [1.07, 1.10, 1.15]},
-		{shelf: 50.8, plf: [1.03, 1.05, 1.07]},
-		{shelf: 44.45, plf: [1.01, 1.03, 1.03]},
-		{shelf: 38.1, plf: [1.00, 1.00, 1.00]},
-		{shelf: 31.75, plf: [0.97, 0.98, 0.99]},
+		{shelf: 57, plf: [1.07, 1.10, 1.15]},
+		{shelf: 51, plf: [1.03, 1.05, 1.07]},
+		{shelf: 44, plf: [1.01, 1.03, 1.03]},
+		{shelf: 38, plf: [1.00, 1.00, 1.00]},
+		{shelf: 32, plf: [0.97, 0.98, 0.99]},
 		{shelf: 0, plf: [0.93, 0.95, 0.98]}
 	];
 	
@@ -55,7 +55,7 @@ tdfApp.controller('tdfController', function ($scope) {
 			var valf = vals[1].split('/');
 		 	dVal += parseFloat(valf[0])/parseFloat(valf[1]);
 		}
-		return dVal * 25.4; 	
+		return Math.round(dVal * 25.4); 	
 	};
 	
 	$scope.calculate = function () { 
@@ -103,7 +103,7 @@ tdfApp.controller('tdfController', function ($scope) {
 
         var tdfClass = tdfTable[tdfTable.length - 1].cls;
         for (var i=0; i<tdfTable.length; i++) {
-			if ($scope.tdf < tdfTable[i].tdf) {
+			if (result.tdf < tdfTable[i].tdf) {
 				tdfClass = tdfTable[i].cls;
 				break;
 			}    	
@@ -111,4 +111,5 @@ tdfApp.controller('tdfController', function ($scope) {
     	result.tdfClass = tdfClass;
     	return result;
     };
+    
 });
