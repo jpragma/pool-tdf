@@ -17,7 +17,7 @@ tdfApp.controller('tdfController', function ($scope) {
         {ms: 133, psf: 0.88},{ms: 9999999999999, psf: 0.85}];
 
 	var pafTable = [
-		{mtDiff: 32, paf: [1.09, 1,14, 1.20]},
+		{mtDiff: 32, paf: [1.09, 1.14, 1.20]},
 		{mtDiff: 25, paf: [1.07, 1.10, 1.14]},
 		{mtDiff: 22, paf: [1.05, 1.07, 1.09]},
 		{mtDiff: 19, paf: [1.03, 1.04, 1.05]},
@@ -80,29 +80,36 @@ tdfApp.controller('tdfController', function ($scope) {
     			break;
     		}
     	}
-    	var psfIdx = 1;
-    	if (psf >= 1.1)
-    		psfIdx = 2;
-    	else if (psf <= 0.9)
-    		psfIdx = 0;
-    	
-    	var paf = pafTable[pafTable.length-1].paf;
+
+    	var pafCol = pafTable[pafTable.length-1].paf;
     	for (var i=0; i<pafTable.length; i++) {
 			if (mtDiff > pafTable[i].mtDiff) {
-				paf = pafTable[i].paf;
+				pafCol = pafTable[i].paf;
 				break;
 			}    	
     	}
+        var paf = pafCol[1];
+        if (psf >= 1.1)
+            paf = pafCol[2];
+        else if (psf <= 0.9)
+            paf = pafCol[0];
     	
-    	var plf = plfTable[plfTable.length-1].plf;
+    	var plfCol = plfTable[plfTable.length-1].plf;
     	for (var i=0; i<plfTable.length; i++) {
 			if (shelf > plfTable[i].shelf) {
-				plf = plfTable[i].plf;
+				plfCol = plfTable[i].plf;
 				break;
 			}    	
     	}
+        var plf = 0;
+        if (psf <= 0.9)
+            plf = plfCol[0];
+        else if (psf < 1.1 && paf < 1.1)
+            plf = plfCol[1];
+        else if (psf >= 1.1 || paf >= 1.1)
+            plf = plfCol[2];
 
-		var result = { tsf: table.tsf, psf: psf, paf: paf[psfIdx], plf: plf[psfIdx] };
+		var result = { tsf: table.tsf, psf: psf, paf: paf, plf: plf };
 		result.tdf = result.tsf * result.psf * result.paf * result.plf;
 
         var tdfClass = tdfTable[tdfTable.length - 1].cls;
@@ -132,6 +139,7 @@ tdfApp.controller('tdfController', function ($scope) {
         {t:[2,1.0],s:['4 3/16',1.1],a:['3 12/16',0.99],l:['1 7/8',1.03],r:1.12, id:'pocket unknown'},
         {t:[5,0.85],s:['4 1/8',1.15],a:['2 7/8',1.14],l:['1 3/8',0.99],r:1.10, id:'Neil bar box'},
         {t:[2,1.0],s:['4 1/2',1.0],a:['3 1/2',1.07],l:['1 3/4',1.0],r:1.07, id:'typical Pro-Cut Diamond'},
+        {t:[2,1.0],s:['4 1/4',1.1],a:['4',0.97],l:['0 15/16',0.98],r:1.05, id:'Pool Hustler GC'},
 
 
         {t:[2,1.0],s:['4 1/2',1.0],a:['3',1.14],l:['2 1/2',1.15],r:1.31, id:'Isaac fictitious A'}
