@@ -64,6 +64,13 @@
     	<tr><td>Table Difficulty Factor:</td><td>{{result.tdf | number:2}}</td></tr>
     	<tr><td>This table is </td><td>{{result.tdfClass}}</td></tr>
     </table>
+    
+    <div id="unitTests" ng-show="true">
+    	<button ng-click="runUnitTest()">Test</button>
+        <ol>
+            <li ng-repeat="e in unitTestErrors">{{e}}</li>
+        </ol>
+    <div>
 </body>
 
 

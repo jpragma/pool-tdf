@@ -111,5 +111,45 @@ tdfApp.controller('tdfController', function ($scope) {
     	result.tdfClass = tdfClass;
     	return result;
     };
+
+
+
+
+    var testData = [
+        {t:[1,1.1],s:['4',1.2],a:['3 1/4',1.02],l:['1 7/8',1.03],r:1.39, id:'fictitious tough 10'},
+        {t:[2,1.0],s:['3 7/8',1.25],a:['3 1/4',1.00],l:['2 1/8',1.07],r:1.34, id: 'fictitious example B'},
+        {t:[2,1.0],s:['3 7/8',1.25],a:['3 6/8',0.97],l:['0 3/4',0.98],r:1.19, id: 'Bonus Ball'},
+        {t:[2,1.0],s:['4 1/8',1.15],a:['3 2/8',1.05],l:['1',0.98],r:1.18, id: 'Mark Gregory Centennial'},
+        {t:[1,1.1],s:['5 1/2',0.85],a:['3 1/2',1.09],l:['2 1/2',1.15],r:1.17, id:'converted snooker'},
+        {t:[2,1.0],s:['4 1/8',1.15],a:['3 3/8',1.02],l:['1 3/8',0.99],r:1.16, id:'Qaddiction Diamond'},
+        {t:[2,1.0],s:['4',1.2],a:['3 5/8',0.98],l:['1',0.98],r:1.15, id:'rexus31'},
+        {t:[2,1.0],s:['4',1.2],a:['3 3/4',0.97],l:['1',0.98],r:1.14, id:'FatBoy GC'},
+        {t:[2,1.0],s:['4',1.2],a:['3 3/4',0.97],l:['0 7/8',0.98],r:1.14, id:'TATE GC'},
+        {t:[2,1.0],s:['4 3/16',1.1],a:['3 12/16',0.99],l:['1 7/8',1.03],r:1.12, id:'pocket unknown'},
+        {t:[5,0.85],s:['4 1/8',1.15],a:['2 7/8',1.14],l:['1 3/8',0.99],r:1.10, id:'Neil bar box'},
+        {t:[2,1.0],s:['4 1/2',1.0],a:['3 1/2',1.07],l:['1 3/4',1.0],r:1.07, id:'typical Pro-Cut Diamond'},
+
+
+        {t:[2,1.0],s:['4 1/2',1.0],a:['3',1.14],l:['2 1/2',1.15],r:1.31, id:'Isaac fictitious A'}
+    ];
+
+    $scope.unitTestErrors = [];
+    var assert = function(t, msg, a, b) {
+        if (a != b) {
+            $scope.unitTestErrors.push("Table '" + t + "' " + msg + " " + a + " != " + b);
+        }
+    };
+
+    $scope.runUnitTest = function() {
+        for (var i=0; i<testData.length; i++) {
+            var o = testData[i];
+            var result = $scope.doCalc($scope.tables[o.t[0]], inchToMM(o.s[0]), inchToMM(o.a[0]), inchToMM(o.l[0]));
+            assert(o.id, "TSF", result.tsf, o.t[1]);
+            assert(o.id, "PSF", result.psf, o.s[1]);
+            assert(o.id, "PAF", result.paf, o.a[1]);
+            assert(o.id, "PLF", result.plf, o.l[1]);
+        }
+    };
+
     
 });
