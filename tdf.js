@@ -9,7 +9,7 @@ tdfApp.controller('tdfController', function ($scope) {
         {name:'6 or 7 ft (bar box)', tsf:0.85}
     ];
     $scope.selectedTable = $scope.tables[2];
-    $scope.units = 'cm';
+    $scope.units = 'inch';
 
     var psfTable = [{ms: 86, psf: 1.55},{ms: 89, psf: 1.46},{ms: 92, psf: 1.38},{ms: 95, psf: 1.31},
         {ms: 98, psf: 1.25},{ms: 102, psf: 1.20},{ms: 105, psf: 1.15},{ms: 108, psf: 1.10},
@@ -55,7 +55,7 @@ tdfApp.controller('tdfController', function ($scope) {
 			var valf = vals[1].split('/');
 		 	dVal += parseFloat(valf[0])/parseFloat(valf[1]);
 		}
-		return Math.round(dVal * 25.4); 	
+		return dVal * 25.4;
 	};
 	
 	$scope.calculate = function () { 
@@ -67,7 +67,12 @@ tdfApp.controller('tdfController', function ($scope) {
     	$scope.result = result;
 	}
 	
-    $scope.doCalc = function (table, mouth, throat, shelf) {    	    	
+    $scope.doCalc = function (table, mouth, throat, shelf) {
+        var mtDiff = Math.round(mouth - throat);
+        mouth = Math.round(mouth);
+        throat = Math.round(throat);
+        shelf = Math.round(shelf);
+
     	var psf = psfTable[psfTable.length-1].psf;    	
     	for (var i=0; i < psfTable.length; i++) {
     		if (mouth <= psfTable[i].ms) { 
@@ -81,7 +86,6 @@ tdfApp.controller('tdfController', function ($scope) {
     	else if (psf <= 0.9)
     		psfIdx = 0;
     	
-    	var mtDiff = mouth - throat;
     	var paf = pafTable[pafTable.length-1].paf;
     	for (var i=0; i<pafTable.length; i++) {
 			if (mtDiff > pafTable[i].mtDiff) {
