@@ -23,7 +23,7 @@ tdfApp.controller('tdfController', function ($scope) {
 		{mtDiff: 19, paf: [1.03, 1.04, 1.05]},
 		{mtDiff: 16, paf: [1.01, 1.02, 1.02]},
 		{mtDiff: 13, paf: [1.00, 1.00, 1.00]},
-		{mtDiff: 9, paf: [0.98, 0.98, 0.99]},
+		{mtDiff: 10, paf: [0.98, 0.98, 0.99]},
 		{mtDiff: 6, paf: [0.96, 0.97, 0.98]},
 		{mtDiff: 0, paf: [0.94, 0.95, 0.97]}
 	];
@@ -134,7 +134,7 @@ tdfApp.controller('tdfController', function ($scope) {
         {t:[2,1.0],s:['3 7/8',1.25],a:['3 1/4',1.00],l:['2 1/8',1.07],r:1.34, id: 'fictitious example B'},
         {t:[2,1.0],s:['3 7/8',1.25],a:['3 6/8',0.97],l:['3/4',0.98],r:1.19, id: 'Bonus Ball'},
         {t:[2,1.0],s:['4 1/8',1.15],a:['3 2/8',1.05],l:['1',0.98],r:1.18, id: 'Mark Gregory Centennial'},
-        {t:[1,1.1],s:['5 1/2',0.85],a:['3 1/2',1.09],l:['2 1/2',1.15],r:1.17, id:'converted snooker'},
+        {t:[1,1.1],s:['5 1/2',0.85],a:['3 1/2',1.09],l:['2 1/2',1.07],r:1.09, id:'converted snooker'},
         {t:[2,1.0],s:['4 1/8',1.15],a:['3 3/8',1.02],l:['1 3/8',0.99],r:1.16, id:'Qaddiction Diamond'},
         {t:[2,1.0],s:['4',1.2],a:['3 5/8',0.98],l:['1',0.98],r:1.15, id:'rexus31'},
         {t:[2,1.0],s:['4',1.2],a:['3 3/4',0.97],l:['1',0.98],r:1.14, id:'FatBoy GC'},
@@ -147,7 +147,7 @@ tdfApp.controller('tdfController', function ($scope) {
         {t:[2,1.0],s:['4 1/2',1.0],a:['3 5/8',1.04],l:['1 3/8',0.98],r:1.02, id:'2005 Diamond Pro'},
         {t:[2,1.0],s:['4 1/2',1.0],a:['4',0.98],l:['1 5/8',1.0],r:0.98, id:'Antique Brunswick Jefferson'},
         {t:[2,1.0],s:['4 1/2',1.0],a:['3.875',1.0],l:['1.5',0.98],r:0.98, id:'Red Badge Diamond Pro'},
-        {t:[2,1.0],s:['5',0.91],a:['3 7/8',1.1],l:['1 3/8',0.98],r:0.98, id:'old GC II Fort Collins'},
+        {t:[2,1.0],s:['5',0.91],a:['3 7/8',1.1],l:['1 3/8',0.99],r:0.99, id:'old GC II Fort Collins'},
         {t:[2,1.0],s:['4 1/2',1.0],a:['3 3/4',1.02],l:['1 1/4',0.95],r:0.97, id:'1931 Brunswick with double shimmed pockets'},
         {t:[2,1.0],s:['4 7/8',0.91],a:['4 3/16',1.02],l:['1 15/16',1.03],r:0.96, id:'typical League-Cut Diamond'},
 
